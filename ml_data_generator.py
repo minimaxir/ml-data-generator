@@ -86,12 +86,12 @@ df.to_csv("gen_df_regression.csv", index=False)
 
 df_copy = df.copy()
 bins = df_copy['target'].quantile()
-df_copy['target'] = pd.cut(df_copy['target'], bins=bins, labels=False)
+df_copy['target'] = pd.cut(
+    df_copy['target'], bins=bins, labels=False, include_lowest=True)
 df_copy.to_csv("gen_df_binary.csv", index=False)
 
 df_copy = df.copy()
-# print(df_copy['target'])
-bins = df_copy['target'].quantile(np.linspace(0, 1, 10))
-print(bins)
-df_copy['target'] = pd.cut(df_copy['target'], bins=bins, labels=False)
+bins = df_copy['target'].quantile(np.linspace(0, 1, 11))
+df_copy['target'] = pd.cut(
+    df_copy['target'], bins=bins, labels=False, include_lowest=True).astype(int)
 df_copy.to_csv("gen_df_categorical.csv", index=False)
