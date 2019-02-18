@@ -17,12 +17,12 @@ These datasets also work well when testing against AutoML approaches, as it has 
 * `num2`: Integers sampled between 1 and 100.
 * `text1`: Random 10 +/- 40% words.
 * `text2`: Random 4 +/- 40% words.
-* `cat1`: Integers sampled between 1 and 10. (but it should not be parsed as a numeric field!)
-* `cat2`: Letters `a, b, c` sampled at unequal proabilities.
+* `cat1`: Integers sampled between 1 and 10. (but it should not be parsed as a numeric field, as the value contributions are not linear!)
+* `cat2`: Letters `a, b, c` sampled at unequal proabilities. (`c` is rare and has a high value contribution)
 * `datetime1`: Random datetime in 2017-2018.
 * `datetime2`: The `datetime1` value, plus a random value between 0 and 72 hours.
 
-The fields `name`, `id` all have zero contribution to the target variable.
+The fields `id` and `name` have zero contribution to the target variable. Make sure your your model doesn't attempt to process them!
 
 ## Maintainer/Creator
 

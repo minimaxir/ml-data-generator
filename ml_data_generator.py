@@ -14,6 +14,12 @@ df = pd.DataFrame()
 # Build up fake data of all data types for the model.
 # See the README for more information about each field.
 
+# Dummy data
+
+df['id'] = range(1, nrow+1)
+df['name'] = [fake.name()
+              for _ in range(nrow)]
+
 # Numeric data
 
 df['num1'] = np.random.normal(0, 1, nrow)
@@ -25,9 +31,6 @@ df['text1'] = [fake.sentence(nb_words=10, variable_nb_words=True)
                for _ in range(nrow)]
 df['text2'] = [fake.sentence(nb_words=4, variable_nb_words=True)
                for _ in range(nrow)]
-df['name'] = [fake.name()
-              for _ in range(nrow)]
-
 # Categorical data
 
 df['cat1'] = np.random.randint(1, 10, nrow)
@@ -85,9 +88,9 @@ df['target'] = (num1_tf + num2_tf + text1_tf + text2_tf +
 df.to_csv("gen_df_regression.csv", index=False)
 
 df_copy = df.copy()
-bins = df_copy['target'].quantile()
+bins = df_copy['target'].quantile([0.0, 0.5, 1.0])
 df_copy['target'] = pd.cut(
-    df_copy['target'], bins=bins, labels=False, include_lowest=True)
+    df_copy['target'], bins=bins, labels=False, include_lowest=True).astype(int)
 df_copy.to_csv("gen_df_binary.csv", index=False)
 
 df_copy = df.copy()
