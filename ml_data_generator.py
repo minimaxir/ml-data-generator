@@ -58,27 +58,8 @@ text2_tf = df['text2'].apply(text2_transform)
 datetime1_tf = (df['datetime2'] - df['datetime1'])
 datetime1_tf = datetime1_tf / np.timedelta64(1, 'h') / 12
 
-cat1_dict = {
-    1: 2,
-    2: -1,
-    3: 4,
-    4: 6,
-    5: -6,
-    6: 4,
-    7: 9,
-    8: 10,
-    9: -4,
-    10: 0
-}
-
-cat2_dict = {
-    'a': 1,
-    'b': 4,
-    'c': 15
-}
-
-cat1_tf = df['cat1'].apply(lambda x: cat1_dict[x])
-cat2_tf = df['cat2'].apply(lambda x: cat2_dict[x])
+cat1_tf = df['cat1'].apply(cat1_transform)
+cat2_tf = df['cat2'].apply(cat2_transform)
 
 df['target'] = (num1_tf + num2_tf + text1_tf + text2_tf +
                 datetime1_tf + cat1_tf + cat2_tf)

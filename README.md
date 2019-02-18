@@ -4,6 +4,7 @@ A Python script to generate fake datasets optimized for testing machine learning
 
 The generated datasets have the following properties which test the limits of ML/DL models:
 
+* Generates datasets for regression, binary classification, and classification problems (with balanced classes for the latter two types of problems)
 * Datasets contain numeric, text, datetime, and categorical data fields.
 * Target variable is calculated nonlinearly, forcing models beyond simple linear models.
 * Target variable is calculated using explicit interactions effects between input fields.
