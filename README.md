@@ -6,14 +6,32 @@ The generated datasets have the following properties which test the limits of ML
 
 * Generates datasets for regression, binary classification, and classification problems (with balanced classes for the latter two types of problems)
 * Datasets contain numeric, text, datetime, and categorical data fields.
-* Target variable is calculated nonlinearly, forcing models beyond simple linear models.
-* Target variable is calculated using explicit interactions effects between input fields.
+* Target variable is calculated nonlinearly, favoring models beyond simple linear models.
+* Target variable is calculated using explicit interactions effects between input variables.
 * Dataset contains fields which have zero contribution to the target field, forcing a model/workflow to learn to discard/ignore those fields.
 
 These datasets also work well when testing against AutoML approaches, as it has several traps just for that use case.
 
+## Usage
+
+Install the prerequisites pandas and faker:
+
+```shell
+pip3 install pandas faker
+```
+
+Download the repo, set the number of rows you want to resulting dataset to be in `ml_data_generator.py`, and then run:
+
+```shell
+python3 ml_data_generator.py
+```
+
+The 3 resulting datasets will be generated into the current directory.
+
 ## Input Fields
 
+* `id`: Record ID.
+* `name`: Random name.
 * `num1`: Numbers sampled from the standard normal distribution.
 * `num2`: Integers sampled between 1 and 100.
 * `text1`: Random 10 +/- 40% words.
