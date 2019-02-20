@@ -57,12 +57,14 @@ text2_tf = df['text2'].apply(text2_transform)
 
 datetime1_tf = (df['datetime2'] - df['datetime1'])
 datetime1_tf = datetime1_tf / np.timedelta64(1, 'h') / 12
+datetime2_tf = datetime2_transform(df['datetime2'])
 
 cat1_tf = df['cat1'].apply(cat1_transform)
 cat2_tf = df['cat2'].apply(cat2_transform)
 
-df['target'] = (num1_tf + num2_tf + text1_tf + text2_tf +
-                datetime1_tf + cat1_tf + cat2_tf)
+df['target'] = (np.log10(num1_tf + num2_tf) +
+                np.power(text1_tf * text2_tf, datetime2_tf) +
+                datetime1_tf + np.max(cat1_tf + cat2_tf))
 
 # Save the 3 dataframes.
 
